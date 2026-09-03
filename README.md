@@ -1,35 +1,40 @@
-# youtube-downloader-pro v17.8
-oke gais ini pakai bahasa indonesia jadi aku membuat kode bat (windows) dan powershell (windows juga) yang menurut ku sudah sempurna tetapi kurang beberapa fitur saja
+# YouTube Downloader Pro - Cinnamon Edition v18.0
 
-soo jadi ini tutorialnya
+Aplikasi desktop berbasis Windows untuk mengunduh video dan audio dari YouTube secara massal (Multi-Link) menggunakan antarmuka grafis (GUI) yang modern. Alat ini ditenagai oleh **yt-dlp** sebagai mesin pengunduh utama dan **FFmpeg** sebagai mesin pengolah/penggabung media.
 
-1.download kodenya powershell dan batnya
+Dikembangkan oleh: `jacksport_game` & `kak gem` 💚
 
-2.jika sudah jalankan kode batnya
+## 🚀 Fitur Utama
 
-3.dan jika layar baru muncul dan belum ada gambar menunya mohon bersabar
-karena itu sedang mendownload yt-dlp,dan ffmpeg (mohon maaf jika pembuat yt-dlp dan ffmpeg tidak memberi apapun itu karena saya tidak tau sampai saat saya tulis
-ini) jadi berharaplah internetmu kencang atau kalau mau download sendiri dengan struktur
+- **Multi-Link & Playlist:** Unduh banyak tautan sekaligus atau satu playlist penuh secara otomatis.
+- **Dua Mode Utama:** Mode **Video** (hingga resolusi 8K Ultra HD) dan Mode **Ekstrak Audio** (MP3/WAV/FLAC kualitas tinggi hingga 320 Kbps).
+- **Dynamic Themes:** Mendukung Tema Gelap (*Dark*), Terang (*Light*), atau Otomatis mengikuti sistem Windows.
+- **Bypass Cookie:** Mengatasi video yang terkena pembatasan usia (*age-restricted*) dengan membaca cookie dari browser favorit Anda (Chrome, Edge, Firefox, Brave).
+- **Fitur Cerdas (Smart Save):** Menyimpan konfigurasi terakhir Anda secara otomatis agar tidak perlu menyetel ulang saat aplikasi dibuka kembali.
+- **Multi-Threading Speed:** Mengunduh fragmen video secara paralel untuk kecepatan maksimal.
+- **Fitur Tambahan:** Pembersih cache yt-dlp, riwayat unduhan (*History log*), musik latar UI (No Copyright), dan opsi otomatis mematikan PC (*Auto-Shutdown*) setelah unduhan selesai.
 
+## 📦 Persyaratan Sistem
 
-<img width="609" height="288" alt="image_2026-08-30_222015367" src="https://github.com/user-attachments/assets/9c551518-edc9-4db2-8e14-990c27e57596" />
+- **Sistem Operasi:** Windows 10 / 11
+- **PowerShell:** Versi 5.1 atau yang lebih baru (Sudah bawaan Windows)
+- **Koneksi Internet** (Untuk unduhan otomatis komponen `yt-dlp.exe` dan `ffmpeg.exe` pada peluncuran pertama).
 
+## 🛠️ Cara Penggunaan
 
-4.jika sudah masuk tinggal sesuaikan video apa yang mau di download lalu masukkan baris link youtube ke paling atas
+1. **Unduh Repositori Ini:** Download proyek ini dalam bentuk `.zip` lalu ekstrak ke komputer Anda, atau lakukan `git clone`.
+2. **Jalankan Aplikasi:** Klik dua kali pada file peluncur utama:
+   ```bash
+   youtube-downloader.bat
+   ```
+3. **Proses Awal:** Pada peluncuran pertama, sistem akan otomatis mengunduh *core engine* (`yt-dlp.exe` dan `ffmpeg.exe`). Harap tunggu hingga status berubah menjadi `🟢 STANDBY`.
+4. **Mulai Mengunduh:** Masukkan tautan YouTube, pilih folder penyimpanan, atur kualitas, lalu klik tombol **🚀 MULAI PROSES SEKARANG**.
 
-5.folder target output penyimpanan
+> ⚠️ **Penting untuk Bypass Cookie:** Jika Anda mengaktifkan centang *Bypass Cookie*, pastikan browser yang Anda pilih (misal: Chrome) dalam keadaan **TERTUTUP** selama proses pengunduhan berlangsung agar file cookie tidak terkunci oleh sistem.
 
-6.pilih mode utama (sesuaikan saja)
+## 📂 Struktur File Proyek
 
-7.sisanya biarkan default tau kalau mau samaan kayak aku tinggal copas ini aja
-
-<img width="836" height="973" alt="Screenshot 2026-08-30 214539" src="https://github.com/user-attachments/assets/9fbf27af-8e1f-4e7b-815e-032b99541c85" />
-
-8.lalu mulai proses sekarang
-
-PERINGATAN!!!:
-selalu update engine ketika dijalankan kodenya dan selalu lihat resolusi videonya support berapa atau jika kamu paham klik
-cek format di pojok bawah sedikit keatas
-
-dan tambahan tutorial ada di dalam kode di pojok kanan atas tanda tanya
-
+- `youtube-downloader.bat` - Skrip batch peluncur utama (membuka CMD dan memicu PowerShell).
+- `downloader.ps1` - Skrip utama PowerShell yang berisi kode GUI (XAML) dan logika unduhan.
+- `cinnamon_config_pro.json` - File konfigurasi otomatis (terbentuk setelah aplikasi dijalankan).
+- `cinnamon_history_pro.txt` - Catatan riwayat unduhan sukses.
