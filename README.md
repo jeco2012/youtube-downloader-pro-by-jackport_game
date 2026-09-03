@@ -1,4 +1,4 @@
-# YouTube Downloader Pro - Cinnamon Edition v18.0
+# YouTube Downloader Pro - Cinnamon Edition v18.1
 
 Aplikasi desktop berbasis Windows untuk mengunduh video dan audio dari YouTube secara massal (Multi-Link) menggunakan antarmuka grafis (GUI) yang modern. Alat ini ditenagai oleh **yt-dlp** sebagai mesin pengunduh utama dan **FFmpeg** sebagai mesin pengolah/penggabung media.
 
