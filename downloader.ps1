@@ -9,6 +9,9 @@
 # -----------------------------------------------------------------
 $global:AppVersion = 18.1
 $global:UpdateUrl  = "https://raw.githubusercontent.com/jeco2012/youtube-downloader-pro-by-jackport_game/refs/heads/main/downloader.ps1"
+# Tangkap lokasi file script sejak awal
+$global:ScriptFullPath = $MyInvocation.MyCommand.Definition
+if (-not $global:ScriptFullPath) { $global:ScriptFullPath = Join-Path (Get-Location).Path "downloader.ps1" }
 # -----------------------------------------------------------------
 
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12 -bor 3072
@@ -643,12 +646,10 @@ function Check-AppUpdate {
         $webclient = New-Object System.Net.WebClient
         $webclient.CachePolicy = New-Object System.Net.Cache.RequestCachePolicy([System.Net.Cache.RequestCacheLevel]::BypassCache)
         
-        # Trik anti-cache: Tambahkan angka acak di akhir link agar GitHub selalu memberi file paling baru saat ini juga
         $randomUrl = $global:UpdateUrl + "?t=" + [Guid]::NewGuid().ToString()
         $remoteScript = $webclient.DownloadString($randomUrl)
         
         if ($remoteScript -match '\$global:AppVersion\s*=\s*([0-9\.]+)') {
-            # Paksa baca titik sebagai desimal (Standar Internasional) agar tidak error di PC bahasa Indonesia
             $remoteVersion = [double]::Parse($Matches[1], [System.Globalization.CultureInfo]::InvariantCulture)
             $lokalVersion = [double]::Parse([string]$global:AppVersion, [System.Globalization.CultureInfo]::InvariantCulture)
 
@@ -657,20 +658,20 @@ function Check-AppUpdate {
                 $StatStatus.Text = "⬇️ UPDATE SCRIPT"
                 Refresh-Dashboard
                 
-                $scriptPath = $MyInvocation.MyCommand.Definition
-                if (-not $scriptPath) { $scriptPath = ".\downloader.ps1" }
+                # Menimpa file script menggunakan path pasti
+                [System.IO.File]::WriteAllText($global:ScriptFullPath, $remoteScript, [System.Text.Encoding]::UTF8)
                 
-                [System.IO.File]::WriteAllText($scriptPath, $remoteScript)
-                
-                [System.Windows.MessageBox]::Show("Update UI versi $remoteVersion berhasil diunduh dari GitHub! Aplikasi akan ditutup untuk menerapkan pembaruan. Silakan klik file BAT kamu lagi untuk membuka versi terbaru.", "Update Selesai", "OK", "Information")
+                [System.Windows.MessageBox]::Show("Update UI versi $remoteVersion berhasil diunduh dari GitHub!`n`nAplikasi akan ditutup. Silakan jalankan ulang run.bat kamu.", "Update Selesai", "OK", "Information")
                 
                 $window.Close()
             } else {
                 Log-Msg "✅ Script UI kamu sudah versi terbaru (v$lokalVersion)."
             }
+        } else {
+            Log-Msg "⚠️ Gagal membaca variabel versi dari file di GitHub."
         }
     } catch {
-        Log-Msg "⚠️ Gagal mengecek update script. (Pastikan link GitHub benar dan internet aktif)"
+        Log-Msg "⚠️ Gagal update script: $($_.Exception.Message)"
     }
 }
 # -----------------------------------------------------------------
