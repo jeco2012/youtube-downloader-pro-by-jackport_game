@@ -34,7 +34,6 @@ Dikembangkan oleh: `jacksport_game` & `kak gem` 💚
 
 ## 📂 Struktur File Proyek
 
-- `full youtube downloader.7z` - file ini adalah file yang sudah incloud dengan file ! youtube-downloader,downloader.ps1,ffmpeg (versi sesuai kapan di unggah),yt-dlp (versi sesuai kapan di unggah)
 - `! youtube-downloader.bat` - Skrip batch peluncur utama (membuka CMD dan memicu PowerShell).
 - `downloader.ps1` - Skrip utama PowerShell yang berisi kode GUI (XAML) dan logika unduhan.
 - `cinnamon_config_pro.json` - File konfigurasi otomatis (terbentuk setelah aplikasi dijalankan).
