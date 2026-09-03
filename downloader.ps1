@@ -7,7 +7,7 @@
 # -----------------------------------------------------------------
 # PENGATURAN VERSI & GITHUB (UBAH BAGIAN INI SAAT UPDATE!)
 # -----------------------------------------------------------------
-$global:AppVersion = 18.0
+$global:AppVersion = 18.1
 $global:UpdateUrl  = "https://raw.githubusercontent.com/jeco2012/youtube-downloader-pro-by-jackport_game/refs/heads/main/downloader.ps1"
 # -----------------------------------------------------------------
 
